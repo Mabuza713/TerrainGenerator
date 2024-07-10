@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\MapGenerator.cs" />
     <Compile Include="Assets\Scripts\Display.cs" />
     <Compile Include="Assets\Scripts\NoiseGenerator.cs" />
+    <Compile Include="Assets\Scripts\MeshGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
