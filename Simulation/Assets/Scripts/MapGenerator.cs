@@ -8,11 +8,12 @@ public class MapGenerator : MonoBehaviour
     public enum noiseType
     {
         Perlin,
-        Biome
+        Biome,
+        Mesh
     }
     // wich noise map to show
     public noiseType mapType;
-
+    [Range(0.0f, 100f)] public float meshHeightMultiplier;
     // variables used in Voronoi noise
     [Header("Usable only if map type == Biome")]
     public int biomesAmount;
@@ -40,6 +41,13 @@ public class MapGenerator : MonoBehaviour
         {
             Color[,] biomeMap = NoiseGenerator.GenerateVoronoiNoiseMap(width, height, biomesAmount);
             display.DrawVoronoiMap(biomeMap);
+        }
+        else if (mapType == noiseType.Mesh)
+        {
+            float[,] noiseMap = NoiseGenerator.GeneratePerlinNoiseMap(width, height, noiseScale, octaves, persistance, lacunarity);
+            Color[,] biomeMap = NoiseGenerator.GenerateVoronoiNoiseMap(width, height, biomesAmount);
+
+            display.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap, meshHeightMultiplier), display.DrawVoronoiMap(biomeMap));
         }
 
     }

@@ -8,7 +8,7 @@ public class Display : MonoBehaviour
     public Renderer textureRenderer;
 
 
-    public void DrawPerlinNoiseMap(float[,] noiseMap)
+    public Texture2D DrawPerlinNoiseMap(float[,] noiseMap)
     {
         int width = noiseMap.GetLength(0); int height = noiseMap.GetLength(1);
 
@@ -32,9 +32,11 @@ public class Display : MonoBehaviour
         // temporery
         textureRenderer.sharedMaterial.mainTexture = texture;
         textureRenderer.transform.localScale = new Vector3(width, 1, height);
+
+        return texture;
     }
 
-    public void DrawVoronoiMap(Color[,] colorMap)
+    public Texture2D DrawVoronoiMap(Color[,] colorMap)
     {
         int width = colorMap.GetLength(0); int height = colorMap.GetLength(1);
         Texture2D texture = new Texture2D(width, height);
@@ -53,5 +55,18 @@ public class Display : MonoBehaviour
         // temporery
         textureRenderer.sharedMaterial.mainTexture = texture;
         textureRenderer.transform.localScale = new Vector3(width, 1, height);
+
+        return texture;
+    }
+
+    public MeshFilter meshFilter;
+    public MeshRenderer meshRenderer;
+
+
+    public void DrawMesh(MeshData meshData, Texture2D texture)
+    {
+        meshFilter.sharedMesh = meshData.GenerateMesh();
+        meshRenderer.sharedMaterial.mainTexture = texture;
+
     }
 }
