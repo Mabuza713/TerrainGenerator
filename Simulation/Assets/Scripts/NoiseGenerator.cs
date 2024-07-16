@@ -84,7 +84,6 @@ public static class NoiseGenerator
             }
         }
 
-        float maxDistance = GetMaxDistance(distances);
 
         for (int x = 0; x < width; x++)
         {
@@ -109,14 +108,6 @@ public static class NoiseGenerator
             }
             return index;
         }
-        float GetMaxDistance(float[] distances)
-        {
-            float maxDistance = float.NegativeInfinity;
-            foreach (float distance in distances)
-            {
-                if (distance > maxDistance) { maxDistance = distance; }
-            }
-            return maxDistance;
-        }
+
     }
 }

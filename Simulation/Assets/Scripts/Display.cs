@@ -63,10 +63,16 @@ public class Display : MonoBehaviour
     public MeshRenderer meshRenderer;
 
 
-    public void DrawMesh(MeshData meshData, Texture2D texture)
+    public void DrawMesh(MeshData meshData)
     {
         meshFilter.sharedMesh = meshData.GenerateMesh();
-        meshRenderer.sharedMaterial.mainTexture = texture;
+        meshFilter.sharedMesh.subMeshCount = GetComponent<MapGenerator>().biomesAmount;
 
+        List<int[]> subMeshList = new List<int[]>(GetComponent<MapGenerator>().biomesAmount);
+        for (int i = 0; i < meshFilter.sharedMesh.tangents.Length; i = i + 3) 
+        {
+            
+        
+        }
     }
 }
