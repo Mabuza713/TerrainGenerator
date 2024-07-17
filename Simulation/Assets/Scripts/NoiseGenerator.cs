@@ -9,7 +9,6 @@ public static class NoiseGenerator
 {
     public static float[,] GeneratePerlinNoiseMap(int width, int height, float scale, int octaves, float persistance, float lacunarity) 
     {
-        Random.seed = 32;
         float offsetX = Random.Range(0, 9999f);
         float offsetY = Random.Range(0, 9999f);
         float maxHeight = float.NegativeInfinity;
@@ -66,11 +65,11 @@ public static class NoiseGenerator
     public static Color[,] GenerateVoronoiNoiseMap(int width, int height, int biomesAmount)
     {
         Vector2Int[] centroids = new Vector2Int[biomesAmount];
-        Color[] biomes = new Color[biomesAmount]; // might change for textrures[] ???
+        Color[] regions = new Color[biomesAmount]; // might change for textrures[] ???
         for (int i = 0; i < biomesAmount; i++)
         {
             centroids[i] = new Vector2Int(Random.Range(0, width), Random.Range(0, height));
-            biomes[i] = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f); // might need to change to pick random texture from previously created ??
+            regions[i] = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f); // might need to change to pick random texture from previously created ??
         }
 
         Color[,] colorMap = new Color[width , height];
@@ -79,19 +78,11 @@ public static class NoiseGenerator
         {
             for (int y = 0; y < height; y++)
             {
-                colorMap[x, y] = biomes[GetCentroidIndex(new Vector2Int(x, y))];
+                colorMap[x, y] = regions[GetCentroidIndex(new Vector2Int(x, y))];
                 distances[x * width + y] = Vector2.Distance(new Vector2Int(x, y), centroids[GetCentroidIndex(new Vector2Int(x, y))]);
             }
         }
 
-
-        for (int x = 0; x < width; x++)
-        {
-            for (int y = 0; y < height; y++)
-            {
-                colorMap[x, y] = colorMap[x, y];
-            }
-        }
 
         return colorMap;
         int GetCentroidIndex(Vector2Int pixelPosition)
