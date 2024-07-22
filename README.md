@@ -2,7 +2,7 @@
 
 ## Overview
 
-This Unity project is designed to generate terrain using Perlin and Voronoi noise maps. The project includes scripts for generating noise maps, creating meshes based on these maps, and rendering the results within the Unity environment.
+This Unity project is designed to generate terrain with distinct biomes using Perlin and Voronoi noise maps. The project includes scripts for generating noise maps, creating meshes based on these maps, and rendering the results within the Unity environment.
 
 ## Table of Contents
 
